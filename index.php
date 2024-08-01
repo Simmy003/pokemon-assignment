@@ -1,3 +1,9 @@
+<?php
+  $json = file_get_contents("data.json");
+  $data = json_decode($json,true);
+  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +23,12 @@
       <h1 class="text-white">Get your Pokemon!</h1>
       <div>
         <button class="btn btn-primary">
-          <i class="fa fa-sign-in"></i> Login</button>
-      </div>
+          <i class="fa fa-user"></i> Log In</button>
+          <button class="btn btn-primary">
+          <i class="fa fa-user"></i> Sign Up</button>
+
+          </div>
+      
     </div>
     <table class="table table-dark">
       <thead>
@@ -33,12 +43,33 @@
         </tr>
       </thead>
       <tbody>
+      
+          <?php foreach($data as $element):?>
+            <tr>
+            <td><img src ="<?php echo $element["image"]["thumbnail"];?>"></td>
+            <td><?php echo $element["name"]["french"];?></td>
+            <td><span style="text-transform:uppercase"><?php echo $element["species"];?></span></td>
+            <td><?php echo $element["description"];?></td>
+            <td><?php echo $element["profile"]["weight"];?></td>
+            <td><?php echo $element["profile"]["height"];?></td>
+            <td><button>
 
-        <!-- Write your code here -->
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              <i class="fa fa-paw" aria-hidden="true"></i>
+              <i class="fa fa-female" aria-hidden="true"></i>
+
+
+              </button>
+            </tr>
+          <?php endforeach;?>
+       
       </tbody>
     </table>
 
   </div>
+            
+
+
   <!-- DNT MAKE ANY CHANGES ON THE CODE BELOW -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
